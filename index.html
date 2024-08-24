@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Verification</title>
+    <style>
+        /* Style for Password */
+        .popup {
+            display: none; /* Default hide */
+            position: fixed;
+            z-index: 1000;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            padding: 20px;
+            background-color: #f8d7da;
+            border: 1px solid #f5c2c7;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+        
+        /* Style for popup */
+        .popup-empty {
+            display: none; /* Default hide */
+            position: fixed;
+            z-index: 1000;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 350px;
+            padding: 20px;
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+
+        /* close button style */
+        .close-btn {
+            background-color: #f5c6cb;
+            border: none;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        
+        .close-btn:hover {
+            background-color: #f1a5ab;
+        }
+
+        .close-btn-empty {
+            background-color: #ffeeba;
+            color: #856404;
+        }
+
+        .close-btn-empty:hover {
+            background-color: #ffe8a1;
+        }
+
+        .continue-btn{
+            margin-top: 10px;
+        }
+
+        body{
+            text-align: center;
+            margin-top: 20%;
+        }
+    </style>
+    <script>
+        function checkPassword() {
+            const password = document.getElementById("password").value.trim();
+            if (password === "") {
+                // if password input are blank
+                document.getElementById("popup-empty").style.display = "block";
+            } else if (password === "454545") {
+                // Right Password
+                window.location.href = "form.html";
+            } else {
+                // Wrong Password
+                document.getElementById("popup-wrong").style.display = "block";
+            }
+        }
+
+        function closePopupWrong() {
+            document.getElementById("popup-wrong").style.display = "none";
+        }
+
+        function closePopupEmpty() {
+            document.getElementById("popup-empty").style.display = "none";
+        }
+    </script>
+</head>
+<body>
+    <h2>Enter Password</h2>
+    <input type="password" id="password" placeholder="Enter Password"> <br>
+    <button class="continue-btn" onclick="checkPassword()">Continue</button>
+
+    <!-- wrong password popup -->
+    <div id="popup-wrong" class="popup">
+        <p>Galat Password hai Bhai</p>
+        <button class="close-btn" onclick="closePopupWrong()">Phir se try kar</button>
+    </div>
+
+    <!-- blank password popup -->
+    <div id="popup-empty" class="popup-empty">
+        <p>Are Bhai Tum Andar nahi jaa sakte ho</p>
+        <button class="close-btn close-btn-empty" onclick="closePopupEmpty()">Kuchh to likh</button>
+    </div>
+</body>
+</html>
